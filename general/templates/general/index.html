@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+      input[type=text] {
+      width: 130px;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: white;
+      background-image: url('searchicon.png');
+      background-position: 10px 10px; 
+      background-repeat: no-repeat;
+      padding: 12px 20px 12px 40px;
+      -webkit-transition: width 0.4s ease-in-out;
+      transition: width 0.4s ease-in-out;
+    }
+    
+    input[type=text]:focus {
+      width: 100%;
+    }
+    
+    div.fixed {
+        position: fixed;
+        bottom: 1;
+        right: 0;
+        width: 300px;
+        
+      }
+    
+.column {
+  float: left;
+  padding: 8px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 16%;
+}
+
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+    a:link, a:visited {
+        background-color: white;
+        color: black;
+        border: 2px solid green;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+      }
+      
+      a:hover, a:active {
+        background-color: green;
+        color: white;
+      }
+
+</style>
+<body>
+    <div class="row">
+        <div class="column side">
+          <h2>Serial Number</h2>
+          </div>
+        <div class="column side">
+          <h2>Matric</h2>
+          </div>
+        <div class="column side">
+          <h2>Year</h2>
+          </div>
+        <div class="column side">
+          <h2>Title</h2>
+                  </div>
+        <div class="column side">
+          <h2>Document</h2>
+              </div>
+    {% for general in  all_repo %} 
+    <div class="row">
+        <div class="column side">
+          <p>{{ forloop.counter }}</p>
+        </div>
+        <div class="column side">
+          <p>{{ general.matric_no }}</p>
+        </div>
+        <div class="column side">
+          <p>{{ general.year }}</p>
+        </div>
+        <div class="column side">
+         <p>{{ general.project_title }}</p>
+        </div>
+        <div class="column side">
+         <a href="{{ general.document.url }}">Download Project</a>
+        </div>
+        
+        {% endfor %}   
+
+        <div class="fixed">
+            <a href="{% url 'insert' %}">ADD NEW PROJECT</a>
+        </div>
+     
+      
+
+</body>
+</html>
